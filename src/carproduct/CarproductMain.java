@@ -11,6 +11,7 @@ public class CarproductMain {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
         Scanner s=new Scanner(System.in);
+        System.out.println("Enter choice");
         int x=s.nextInt();
         switch(x)
         {

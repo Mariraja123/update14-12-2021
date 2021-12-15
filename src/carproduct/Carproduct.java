@@ -16,7 +16,7 @@ public Carproduct() {
 public Carproduct(String company_name, String product_id, String product_name, String description, String geartype,
 		String fueltype, String cartype) {
 	super();
-	Company_name = company_name;
+	this.Company_name = company_name;
 	this.product_id = product_id;
 	this.product_name = product_name;
 	this.description = description;
