@@ -1,13 +1,12 @@
-package carproduct;
+package car;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-
 public class CarproductDAO {
-      public static void insert(Carproduct obj) throws ClassNotFoundException, SQLException
+	  public static void insert(Carproduct obj) throws ClassNotFoundException, SQLException
       {
 	String insert="insert into product_details values(?,?,?,?,?)";
 	Connection Con=Connectionutil.getDBconnection();
@@ -32,5 +31,6 @@ public class CarproductDAO {
     	  int i=stmt.executeUpdate();
     	  System.out.println(i);
       }
-	
+
+
 }

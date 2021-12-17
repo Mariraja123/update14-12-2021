@@ -1,27 +1,7 @@
-package car;
-
-import java.util.Objects;
+package Carbooking;
 
 public class Userdetail {
-	
-	private String first_name;
-	private String cpassword;
-	
-	private String Email;
-	private Long phoneno;
-	private String address;
-	
-	
-	public Userdetail(String first_name, String cpassword,  String email, Long phoneno) {
-		super();
-		this.first_name = first_name;
-		this.cpassword = cpassword;
-		
-		this.Email = email;
-		this.phoneno=phoneno;
-		
-	}
-	
+
 	public Userdetail() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -31,9 +11,18 @@ public class Userdetail {
 		this.cpassword = cpassword;
 		Email = email;
 	}
-
+	public Userdetail(String first_name, String cpassword, String email, Long phoneno) {
+		super();
+		this.first_name = first_name;
+		this.cpassword = cpassword;
+		this.Email = email;
+		this.phoneno = phoneno;
 	
-	
+	}
+	private String first_name;
+	private String cpassword;
+	private String Email;
+	private Long phoneno;
 	
 	public String getFirst_name() {
 		return first_name;
@@ -47,8 +36,6 @@ public class Userdetail {
 	public void setCpassword(String cpassword) {
 		this.cpassword = cpassword;
 	}
-	
-	
 	public String getEmail() {
 		return Email;
 	}
@@ -61,18 +48,6 @@ public class Userdetail {
 	public void setPhoneno(Long phoneno) {
 		this.phoneno = phoneno;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	
-
 	
 }
-
-	
-	
-

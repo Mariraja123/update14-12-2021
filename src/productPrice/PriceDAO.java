@@ -10,10 +10,10 @@ public class PriceDAO {
 	
 	 public static void insert(Productprice obj) throws ClassNotFoundException, SQLException
      {
-	String insert="insert into price_detail values(?,?,?,?,?,?,?)";
+	String insert="insert into price_details values(?,?,?,?,?,?,?)";
 	Connection Con=Connectionutil.getDBconnection();
 	PreparedStatement stmt=Con.prepareStatement(insert);
-	stmt.setString(1, obj.getPrice_id());
+	stmt.setString(1, obj.getPrice_amount());
 	stmt.setString(2, obj.getProduct_id());
 	stmt.setString(3, obj.getProduct_name());
 	stmt.setString(4, obj.getShowroomprice());
