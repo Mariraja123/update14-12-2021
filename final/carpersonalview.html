@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color:gray;
+  }
+  .active
+  {
+      background-color: hotpink;
+  }
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .form1 {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  .car1
+  {
+    margin-top: -60px;
+    margin-left: 120px;
+  }
+  .car2
+  {
+    margin-top: -95px;
+    margin-left: 640px;
+  }
+  .car3
+  {
+    margin-top: -100px;
+    margin-left: 1050px;
+  }
+  .total
+  {
+    margin-top: 80px;
+  }
+  .box1
+  {
+    margin-left: 20px;
+    
+  }
+  .box2
+  {
+    margin-top: -65px;
+    margin-left: 360px;
+  }
+  .search
+  {
+    margin-left: 700px;
+    margin-top: -65px;
+    width: 25%;
+  }
+ 
+ .firstcar
+ {
+   margin-left: 150px;
+ }
+ .car1
+ {
+     margin-left: 470px;
+     margin-top: -400px;
+ }
+ .car2
+ {
+     margin-left: 900px;
+     margin-top: -300px;
+    
+ }
+    </style>
+</head>
+<body>
+    <ul>
+        <li data-toggle="modal" data-target="#myModals"><a href="#admin">Admin</a></li>
+        <li><a href="#news">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="float:left"><a class="active" href="#about">Car showroom</a></li>
+    </ul>
+    <img  src="car1.jpg" style="width: 500px;" height="600px">
+    
+    <div class="car1">
+        <h1>Car Name: Bmw x1 series</h1>
+        <h1>ARAI mileage: 19.62</h1>
+        <h3>Engine displacement: 1995</h3>
+        <h3>seat capacity: 5</h3>
+        <h3>fuel tank capacity: 51.0</h3>
+        <h2 style="color:red"><del>Rs.10000000</del><span><h3 style="margin-left: 140px; margin-top: -35px;">25% offer</h3></span></h2><h2 style="color: sienna;">RS.7500000</h2>
+    </div>
+    <div class="car2">
+        <h1>fuel type: diesel</h1>
+        <h3>No.of cyilnder:4</h3>
+        <h3>Gear box : 8 speed</h3>
+        <h3>Body Type:SUV</h3>
+        <button style="width: 150px; height: 50px; background-color: red;">book now</button>
+    </div>
+</body>
+</html>

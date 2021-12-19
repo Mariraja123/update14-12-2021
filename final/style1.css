@@ -1,0 +1,12 @@
+.container
+{
+    text-align: center;
+    margin-top: 170px;
+    border: 1px solid black;
+    background: linear-gradient(yellow,white);
+    max-width: 300px;
+    
+}
+h2{
+    text-shadow: 2px 2px 2px red;
+}
