@@ -45,12 +45,29 @@ public class Carproduct {
 		this.CarType = carType;
 		this.price = price;
 	}
+	
+	public Carproduct(String car_id, String car_name) {
+		super();
+		Car_id = car_id;
+		Car_name = car_name;
+	}
+	public Carproduct(String car_id, long price) {
+		super();
+		this.Car_id = car_id;
+		this.price = price;
+	}
+	
+	public Carproduct(String car_id) {
+		super();
+		this.Car_id = car_id;
+	}
 	public String getCar_id() {
 		return Car_id;
 	}
 	public void setCar_id(String car_id) {
-		Car_id = car_id;
+		this.Car_id = car_id;
 	}
+	
 	public String getCar_name() {
 		return Car_name;
 	}
@@ -65,15 +82,10 @@ public class Carproduct {
 		this.fuelType = fuelType;
 	}
 	
-	public Carproduct(String car_id, long price) {
-		super();
-		Car_id = car_id;
-		this.price = price;
-	}
-	public Carproduct(String car_id) {
-		super();
-		Car_id = car_id;
-	}
+
+	
+	
+	
 	public String getCarModel() {
 		return CarModel;
 	}

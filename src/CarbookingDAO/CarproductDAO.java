@@ -95,6 +95,20 @@ public class CarproductDAO {
     	 int i=stmt1.executeUpdate();
     	 System.out.println(i+"deleted");
      }
+     public static void Searchproduct(Carproduct obj3) throws ClassNotFoundException, SQLException
+     {
+    	 String search="Select * from car_details where car_name=? and car_id=?";
+    	 Connection Con=Connectionutil.getDBconnection();
+    	 PreparedStatement stmt=Con.prepareStatement(search);
+    	stmt.setString(1, obj3.getCar_name());
+    	stmt.setString(2, obj3.getCar_id());
+    	 ResultSet rs=stmt.executeQuery();
+    	 while(rs.next())
+    	 {
+    		 System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3)+rs.getString(4)+rs.getString(5)+rs.getString(6));
+    	 }
+    	 
+     }
 
 
 }

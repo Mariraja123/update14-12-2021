@@ -34,4 +34,14 @@ public class OrderdetailDAO {
   	  int i=stmt.executeUpdate();
   	  System.out.println(i);
     }
+    public static void delete(orderDetail obj1) throws ClassNotFoundException, SQLException
+    {
+    	String delete="delete from orderdetails where order_id=?";
+    	 Connection Con=Connectionutil.getDBconnection();
+    	 PreparedStatement stmt=Con.prepareStatement(delete);
+    	 stmt.setInt((1, obj1.getCar_id());
+    	 int i=stmt.executeUpdate();
+    	 System.out.println(i);)
+    	
+    }
 }

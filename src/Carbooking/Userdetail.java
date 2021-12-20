@@ -3,7 +3,11 @@ package Carbooking;
 import java.util.Objects;
 
 public class Userdetail {
-
+	private int userId;
+	private String first_name;
+	private String cpassword;
+	private String Email;
+	private Long phoneno;
 
 	public Userdetail(String cpassword, String email) {
 		super();
@@ -84,11 +88,7 @@ public class Userdetail {
 	public void setPhoneno(Long phoneno) {
 		this.phoneno = phoneno;
 	}
-	private int userId;
-	private String first_name;
-	private String cpassword;
-	private String Email;
-	private Long phoneno;
+	
 	
 
 	

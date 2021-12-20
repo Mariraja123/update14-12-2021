@@ -155,10 +155,10 @@ public class Usermain {
 					switch(user_type)
 					{
 					case "user":
-						System.out.println("1.Show product+2. update password + 3.delete account");
+						System.out.println("1.Show product"+"2. update password" + "3.delete account" +" 4.serach product");
 						int x1=Integer.parseInt(scan.nextLine());
-						String userFlag=null;
-           				Carproduct product=null;
+//						String userFlag=null;
+//           				Carproduct product=null;
 						switch(x1)
 						{
 						case 1:
@@ -170,6 +170,7 @@ public class Usermain {
 							System.out.println(lProducts.get(i));
 							
 						}
+					
 //						System.out.println("enter no of Products Needed");
 //						int noOf=Integer.parseInt(scan.nextLine());
 //					
@@ -214,12 +215,21 @@ public class Usermain {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+						case 4:
+							System.out.println("search your product");
+							System.out.println("Enter your car id");
+							String search=scan.nextLine();
+							System.out.println("Enter your carname");
+							String name=scan.nextLine();
+							Carproduct obj3=new Carproduct(search,name);
+							CarproductDAO stm=new CarproductDAO();
+							stm.Searchproduct(obj3);
 						}
 						
 					  break;
 					case "admin":
 					{
-						System.out.println("1.Add car + 2.update car +  delete car"); 
+						System.out.println("1.Add car" +" 2.update car" +  "3.delete car"+" 4. show car"); 
 						int add=Integer.parseInt(scan.nextLine());
 						switch(add)
 						
@@ -261,6 +271,16 @@ public class Usermain {
 							CarproductDAO pst13=new CarproductDAO();
 							pst13.delete(pst3);
 							break;
+						case 4:
+							System.out.println("show car");
+							CarproductDAO pro1=new CarproductDAO();
+//							Carproduct=null;
+							List<Carproduct> lProducts=pro1.showview();
+							for(int i=0;i<lProducts.size();i++)
+							{
+								System.out.println(lProducts.get(i));
+								
+							}
 							
 						}
 					}
