@@ -99,7 +99,7 @@ public class Usermain {
 					}
 
 				} while (!cpassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$"));
-				Userdetail users = new Userdetail((userId),first_name, cpassword, email, phoneno);
+				Userdetail users = new Userdetail(first_name, cpassword, email, phoneno);
 				try {
 					us.insert(users);
 				} catch (ClassNotFoundException e1) {
@@ -171,16 +171,23 @@ public class Usermain {
 							
 						}
 					
-//						System.out.println("enter no of Products Needed");
-//						int noOf=Integer.parseInt(scan.nextLine());
-//					
-//					Carproduct.insertOrder(product,currentUser,noOf);
-						
-					
-//						System.out.println("do you want to buy more products(y/n)");
-//						  userFlag=scan.nextLine();
-//					while(userFlag.charAt(0)=='y');
-						
+                        
+                        	 System.out.println("which is you want to buy");
+                        	 System.out.println("select car_id");
+                        	 String carid1=scan.nextLine();
+                        	 Carproduct car=new Carproduct(carid1);
+                        	 CarproductDAO dao=new CarproductDAO();
+                        	 dao.selectproduct(car);
+                        	 System.out.println("Enter your userid");
+                        	 int user=Integer.parseInt(scan.nextLine());
+                        	 System.out.println("Enter your carid");
+                        	 String carc=scan.nextLine();
+                        	 System.out.println("Enter your price");
+                        	 int prc=scan.nextInt();
+                        	 orderDetail od=new orderDetail(user,carc,prc);
+                        	 OrderdetailDAO ord= new OrderdetailDAO();
+                        	 ord.insert(od);
+//						
 						break;
 						case 2:
 							System.out.println("Enter your userid");
@@ -229,7 +236,7 @@ public class Usermain {
 					  break;
 					case "admin":
 					{
-						System.out.println("1.Add car" +" 2.update car" +  "3.delete car"+" 4. show car"); 
+						System.out.println("1.Add car" +" 2.update car" +  "3.delete car"+" 4. show car"+"5.price detail"); 
 						int add=Integer.parseInt(scan.nextLine());
 						switch(add)
 						
@@ -279,6 +286,48 @@ public class Usermain {
 							for(int i=0;i<lProducts.size();i++)
 							{
 								System.out.println(lProducts.get(i));
+								
+							}
+						case 5:
+							System.out.println("price details");
+							System.out.println("1.insert value 2.update value 3.delete value");
+							int enter=Integer.parseInt(scan.nextLine());
+							
+							switch(enter)
+							{
+							case 1:
+								System.out.println("Enter your carid");
+								String carid=scan.nextLine();
+								System.out.println("Enter your carname");
+								String carname=scan.nextLine();
+								System.out.println("Enterr Exshowroom price");
+								int show=scan.nextInt();
+								System.out.println("Enter roadtax");
+								int road=scan.nextInt();
+								System.out.println("enter insurance");
+								int insurance=scan.nextInt();
+							    Pricedetail sm1=new Pricedetail(carid,carname,show,road,insurance);
+							    PricedetailDAO obj5=new PricedetailDAO();
+							    obj5.insert(sm1);
+							    break;
+							case 2:
+								System.out.println("update details");
+								System.out.println("Enter your car_id");
+								String car=scan.nextLine();
+								System.out.println("Enter your Exshowroom_price");
+								int room=scan.nextInt();
+								  Pricedetail prc=new Pricedetail(car,room);
+								    PricedetailDAO obj6=new PricedetailDAO();
+								    obj6.update(prc);
+								    break;
+							case 3:
+								System.out.println("delete deatils");
+								System.out.println("Enter your car_id");
+								String cars=scan.nextLine();
+								 Pricedetail prc1=new Pricedetail(cars);
+								    PricedetailDAO obj7=new PricedetailDAO();
+								    obj7.delete(prc1);
+								    break;
 								
 							}
 							

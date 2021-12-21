@@ -12,14 +12,12 @@ public class OrderdetailDAO {
 
 	public static void insert(orderDetail obj) throws ClassNotFoundException, SQLException
     {
-	String insert="insert into order_details values(?,?,?,?,?,?)";
+	String insert="insert into order_details (user_id,car_id,price)values(?,?,?)";
 	Connection Con=Connectionutil.getDBconnection();
 	PreparedStatement stmt=Con.prepareStatement(insert);
-	stmt.setInt(1, obj.getOrder_id());
-	stmt.setLong(2, obj.getNumber());
-	stmt.setString(3, obj.getCar_id());
-	stmt.setInt(4, obj.getQuantity());
-	stmt.setInt(5, obj.getPrice());
+	stmt.setInt(1, obj.getUserId());
+	stmt.setString(2, obj.getCar_id());
+	stmt.setInt(3, obj.getPrice());
 	
 	int i=stmt.executeUpdate();
 	System.out.println(i);
@@ -29,7 +27,7 @@ public class OrderdetailDAO {
   	  String update="update order_details set phone=? where order_id=? ";
   	  Connection Con=Connectionutil.getDBconnection();
   	  PreparedStatement stmt=Con.prepareStatement(update);
-  	  stmt.setLong(1, obj1.getNumber());
+  	 stmt.setInt(1, obj1.getUserId());
   	  stmt.setInt(2, obj1.getOrder_id());
   	  int i=stmt.executeUpdate();
   	  System.out.println(i);
@@ -39,9 +37,9 @@ public class OrderdetailDAO {
     	String delete="delete from orderdetails where order_id=?";
     	 Connection Con=Connectionutil.getDBconnection();
     	 PreparedStatement stmt=Con.prepareStatement(delete);
-    	 stmt.setInt((1, obj1.getCar_id());
+    	 stmt.setInt(1, obj1.getOrder_id());
     	 int i=stmt.executeUpdate();
-    	 System.out.println(i);)
+    	 System.out.println(i);
     	
     }
 }

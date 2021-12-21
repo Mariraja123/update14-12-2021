@@ -51,6 +51,7 @@ public class Carproduct {
 		Car_id = car_id;
 		Car_name = car_name;
 	}
+	
 	public Carproduct(String car_id, long price) {
 		super();
 		this.Car_id = car_id;

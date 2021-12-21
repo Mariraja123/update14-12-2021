@@ -11,14 +11,15 @@ public class UserdetailDAO {
 
 	 public static void insert(Userdetail obj) throws ClassNotFoundException, SQLException
      {
-	String insert="insert into User_details(First_name,cpassword,Email,Phone) values(?,?,?,?,?)";
+	String insert="insert into User_details(First_name,cpassword,Email,Phone) values(?,?,?,?)";
 	Connection Con=Connectionutil.getDBconnection();
 	PreparedStatement stmt=Con.prepareStatement(insert);
 	stmt.setString(1, obj.getFirst_name());
 	stmt.setString(2, obj.getCpassword());
 	stmt.setString(3, obj.getEmail());
 	stmt.setLong(4, obj.getPhoneno());
-	stmt.setInt(5, obj.getUserId());
+	
+	
 	
 	
 	int i=stmt.executeUpdate();
