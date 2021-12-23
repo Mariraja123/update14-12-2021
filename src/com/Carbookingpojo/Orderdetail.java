@@ -1,19 +1,20 @@
-package Carbooking;
+package com.Carbookingpojo;
 
 
 import java.sql.Date;
 import java.util.Objects;
 
-public class orderDetail {
-	private  int order_id;
+public class Orderdetail {
+	private  int orderid;
 	private int userId;
-	private String car_id;
+	private String carid;
 	private int price;
+	
 	public int getOrder_id() {
-		return order_id;
+		return orderid;
 	}
 	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+		this.orderid = order_id;
 	}
 	public int getUserId() {
 		return userId;
@@ -21,11 +22,11 @@ public class orderDetail {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getCar_id() {
-		return car_id;
+	public String getCarid() {
+		return carid;
 	}
-	public void setCar_id(String car_id) {
-		this.car_id = car_id;
+	public void setCar_id(String carid) {
+		this.carid = carid;
 	}
 	public int getPrice() {
 		return price;
@@ -35,7 +36,7 @@ public class orderDetail {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(car_id, order_id, price, userId);
+		return Objects.hash(carid, orderid, price, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -45,30 +46,30 @@ public class orderDetail {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		orderDetail other = (orderDetail) obj;
-		return Objects.equals(car_id, other.car_id) && order_id == other.order_id && price == other.price
+		Orderdetail other = (Orderdetail) obj;
+		return Objects.equals(carid, other.carid) && orderid == other.orderid && price == other.price
 				&& userId == other.userId;
 	}
 	@Override
 	public String toString() {
-		return "orderDetail [order_id=" + order_id + ", userId=" + userId + ", car_id=" + car_id + ", price=" + price
+		return "orderDetail [order_id=" + orderid + ", userId=" + userId + ", car_id=" + carid + ", price=" + price
 				+ "]";
 	}
-	public orderDetail(int order_id, int userId, String car_id, int price) {
+	public Orderdetail(int order_id, int userId, String car_id, int price) {
 		super();
-		this.order_id = order_id;
+		this.orderid = order_id;
 		this.userId = userId;
-		this.car_id = car_id;
+		this.carid = car_id;
 		this.price = price;
 	}
-	public orderDetail() {
+	public Orderdetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public orderDetail(int userId, String car_id, int price) {
+	public Orderdetail(int userId, String carid, int price) {
 		super();
 		this.userId = userId;
-		this.car_id = car_id;
+		this.carid = carid;
 		this.price = price;
 	}
 

@@ -1,20 +1,21 @@
-package Carbooking;
+package com.Carbookingpojo;
 
 import java.util.Objects;
 
-public class Pricedetail {
-	 private  String car_id;
-		private String car_name;
+public class  Pricedetail {
+	 private  String carid;
+		private String carname;
 		 private int Exshowroomprice;
 			private int onroadprice;
 			 private int roadtax;
 			 private int insurance;
-			public Pricedetail(String car_id, String car_name, int exshowroomprice, int onroadprice, int roadtax,
-					int insurance) {
+			 			 
+			public Pricedetail(String car_id, String car_name, int exshowroomprice,  int roadtax,
+					int insurance,int onroadprice) {
 				super();
-				this.car_id = car_id;
-				this.car_name = car_name;
-				Exshowroomprice = exshowroomprice;
+				this.carid = car_id;
+				this.carname = car_name;
+				this.Exshowroomprice = exshowroomprice;
 				this.onroadprice = onroadprice;
 				this.roadtax = roadtax;
 				this.insurance = insurance;
@@ -24,16 +25,16 @@ public class Pricedetail {
 				// TODO Auto-generated constructor stub
 			}
 			public String getCar_id() {
-				return car_id;
+				return carid;
 			}
 			public void setCar_id(String car_id) {
-				this.car_id = car_id;
+				this.carid = car_id;
 			}
 			public String getCar_name() {
-				return car_name;
+				return carname;
 			}
 			public void setCar_name(String car_name) {
-				this.car_name = car_name;
+				this.carname = car_name;
 			}
 			public int getExshowroomprice() {
 				return Exshowroomprice;
@@ -61,7 +62,7 @@ public class Pricedetail {
 			}
 			@Override
 			public int hashCode() {
-				return Objects.hash(Exshowroomprice, car_id, car_name, insurance, onroadprice, roadtax);
+				return Objects.hash(Exshowroomprice, carid, carname, insurance, onroadprice, roadtax);
 			}
 			@Override
 			public boolean equals(Object obj) {
@@ -72,20 +73,20 @@ public class Pricedetail {
 				if (getClass() != obj.getClass())
 					return false;
 				Pricedetail other = (Pricedetail) obj;
-				return Exshowroomprice == other.Exshowroomprice && Objects.equals(car_id, other.car_id)
-						&& Objects.equals(car_name, other.car_name) && insurance == other.insurance
+				return Exshowroomprice == other.Exshowroomprice && Objects.equals(carid, other.carid)
+						&& Objects.equals(carname, other.carname) && insurance == other.insurance
 						&& onroadprice == other.onroadprice && roadtax == other.roadtax;
 			}
 			@Override
 			public String toString() {
-				return "Pricedetail [car_id=" + car_id + ", car_name=" + car_name + ", Exshowroomprice="
+				return "Pricedetail [car_id=" + carid + ", car_name=" + carname + ", Exshowroomprice="
 						+ Exshowroomprice + ", onroadprice=" + onroadprice + ", roadtax=" + roadtax + ", insurance="
 						+ insurance + "]";
 			}
 			public Pricedetail(String car_id, String car_name, int exshowroomprice, int roadtax, int insurance) {
 				super();
-				this.car_id = car_id;
-				this.car_name = car_name;
+				this.carid = car_id;
+				this.carname = car_name;
 				this.Exshowroomprice = exshowroomprice;
 				this.roadtax = roadtax;
 				this.insurance = insurance;
@@ -93,13 +94,14 @@ public class Pricedetail {
 			
 			public Pricedetail(String car_id) {
 				super();
-				this.car_id = car_id;
+				this.carid = car_id;
 			}
 			public Pricedetail(String car_id, int exshowroomprice) {
 				super();
-				this.car_id = car_id;
+				this.carid = car_id;
 				this.Exshowroomprice = exshowroomprice;
 			}
+			
 		
 	
 

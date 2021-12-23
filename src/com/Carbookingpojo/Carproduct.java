@@ -1,10 +1,10 @@
-package Carbooking;
+package com.Carbookingpojo;
 
 import java.util.Objects;
 
 public class Carproduct {
 
-	private String Car_id;
+	private String Carid;
 	private String Car_name;
 	private String fuelType;
 	private String CarModel;
@@ -12,12 +12,12 @@ public class Carproduct {
 	private long price;
 	@Override
 	public String toString() {
-		return "Carproduct [Car_id=" + Car_id + ", Car_name=" + Car_name + ", fuelType=" + fuelType + ", CarModel="
-				+ CarModel + ", CarType=" + CarType + ", price=" + price + "]";
+		return "Carproduct \nCar_id=" + Carid + "\n Car_name=" + Car_name + "\n fuelType=" + fuelType + "\n CarModel="
+				+ CarModel + "\n CarType=" + CarType + "\n price=" + price + "";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(CarModel, CarType, Car_id, Car_name, fuelType, price);
+		return Objects.hash(CarModel, CarType, Carid, Car_name, fuelType, price);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public class Carproduct {
 			return false;
 		Carproduct other = (Carproduct) obj;
 		return Objects.equals(CarModel, other.CarModel) && Objects.equals(CarType, other.CarType)
-				&& Objects.equals(Car_id, other.Car_id) && Objects.equals(Car_name, other.Car_name)
+				&& Objects.equals(Carid, other.Carid) && Objects.equals(Car_name, other.Car_name)
 				&& Objects.equals(fuelType, other.fuelType) && price == other.price;
 	}
 	public Carproduct() {
@@ -38,7 +38,7 @@ public class Carproduct {
 	}
 	public Carproduct(String car_id, String car_name, String fuelType, String carModel, String carType, long price) {
 		super();
-		this.Car_id = car_id;
+		this.Carid = car_id;
 		this.Car_name = car_name;
 		this.fuelType = fuelType;
 		this.CarModel = carModel;
@@ -48,25 +48,25 @@ public class Carproduct {
 	
 	public Carproduct(String car_id, String car_name) {
 		super();
-		Car_id = car_id;
+		Carid = car_id;
 		Car_name = car_name;
 	}
 	
 	public Carproduct(String car_id, long price) {
 		super();
-		this.Car_id = car_id;
+		this.Carid = car_id;
 		this.price = price;
 	}
 	
 	public Carproduct(String car_id) {
 		super();
-		this.Car_id = car_id;
+		this.Carid = car_id;
 	}
 	public String getCar_id() {
-		return Car_id;
+		return Carid;
 	}
 	public void setCar_id(String car_id) {
-		this.Car_id = car_id;
+		this.Carid = car_id;
 	}
 	
 	public String getCar_name() {

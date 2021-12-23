@@ -1,4 +1,4 @@
-package Carbookingconnection;
+package com.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

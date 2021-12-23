@@ -1,13 +1,19 @@
 package Carbookingmain;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.List.*;
 import java.util.Scanner;
 
-import Carbooking.*;
-import CarbookingDAO.*;
+import com.CarbookingDao.*;
+import com.Carbookingpojo.*;
+
+
 
 
 
@@ -18,15 +24,16 @@ public class Usermain {
 		// TODO Auto-generated method stub
 		public static void main(String[] args)  {
 			// TODO Auto-generated method stub
+			SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM-yyyy");
 			Scanner scan = new Scanner(System.in);
 			System.out.println("1.Registered \t 2.login");
 			System.out.println("Enter choice");
-			UserdetailDAO us = null;
-			String x = scan.nextLine();
+			Userdetaildao us = null;
+			int x = Integer.parseInt(scan.nextLine());
 			
 			switch (x) {
-			case "Register":
-				us = new UserdetailDAO();
+			case 1:
+				us = new Userdetaildao();
 
 				String first_name;
 				String tempNum;
@@ -109,11 +116,10 @@ public class Usermain {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				break;
 
-			case "Login":
+			case 2:
 				System.out.println("login");
-
+				
 			
 				do {
 					
@@ -146,47 +152,107 @@ public class Usermain {
 
 				} while (!cpassword1.matches("[A-Za-z0-9@]*"));
 				
-				Userdetail user2 = new Userdetail(Email, cpassword1);
-				UserdetailDAO user1 = new UserdetailDAO();
+				Userdetail user2 = new Userdetail(0, null, cpassword1, Email, null, null);
+				Userdetaildao user1 = new Userdetaildao();
 //				boolean flag1=false;
 				try {
-					String user_type = user1.validate(user2);
-					System.out.println(user_type);
-					switch(user_type)
+//					String user_type = user1.validate(user2);
+					
+					Userdetail crtUser=user1.validate(user2);
+					
+					switch(crtUser.getUsertype())
 					{
+					
 					case "user":
-						System.out.println("1.Show product"+"2. update password" + "3.delete account" +" 4.serach product");
+						while(true)
+						{
+						System.out.println("1.Show product"+'\n'+"2. update password" +'\n'+ "3.delete account" +'\n'+" 4.serach product");
 						int x1=Integer.parseInt(scan.nextLine());
 //						String userFlag=null;
 //           				Carproduct product=null;
 						switch(x1)
 						{
 						case 1:
-						CarproductDAO pro1=new CarproductDAO();
+						Carproductdao pro1=new Carproductdao();
 //						Carproduct=null;
+						String carname=null;
 						List<Carproduct> lProducts=pro1.showview();
 						for(int i=0;i<lProducts.size();i++)
 						{
 							System.out.println(lProducts.get(i));
 							
 						}
-					
+					          System.out.println("buy or not('yes/no')");
+					          String confi=scan.nextLine().toLowerCase();
+					          if(confi.equals("yes"))
+					          {
+					          
                         
                         	 System.out.println("which is you want to buy");
                         	 System.out.println("select car_id");
                         	 String carid1=scan.nextLine();
                         	 Carproduct car=new Carproduct(carid1);
-                        	 CarproductDAO dao=new CarproductDAO();
-                        	 dao.selectproduct(car);
-                        	 System.out.println("Enter your userid");
-                        	 int user=Integer.parseInt(scan.nextLine());
-                        	 System.out.println("Enter your carid");
-                        	 String carc=scan.nextLine();
-                        	 System.out.println("Enter your price");
-                        	 int prc=scan.nextInt();
-                        	 orderDetail od=new orderDetail(user,carc,prc);
-                        	 OrderdetailDAO ord= new OrderdetailDAO();
-                        	 ord.insert(od);
+                        	 Carproductdao dao=new Carproductdao();
+                            	 Carproduct cars=dao.selectproduct(car);
+                        	 System.out.println("sorted selected car in cart");
+                        	 int user=crtUser.getUserId();
+                        	 System.out.println(user);
+                        	 String proId=car.getCar_id();
+                        	 
+//                        	 System.out.println(proId);
+                        	
+//                        	 
+//                        	 Pricedetail sl=new Pricedetail();
+//                        	 int prc=sl.getOnroadprice();
+//                        	 Orderdetail sdf=new Orderdetail();
+                       	 Pricedetaildao priceDao=new Pricedetaildao();
+                        	  int onroad=priceDao.Findproduct(proId);
+                        	  Orderdetaildao sdf=new Orderdetaildao();
+                        	 Orderdetail price=new Orderdetail(user,proId,onroad);
+                        	 sdf.insert(price);
+                        	 System.out.println("do you want to confirm your car bookingclick('yes/no')");
+                        	 String confirm=scan.nextLine().toLowerCase();
+                        	 if(confirm.equals("yes"))
+                        	 {
+                        		 System.out.println("Enter your Expected");
+                        	String temp=scan.nextLine();
+                        	Date date1 = null;
+							try {
+								date1 = sdf1.parse(temp);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+                        	CarorderDao sdao= new CarorderDao();
+                        	Orderdetaildao orderdao=new Orderdetaildao();
+                        	int onorder=orderdao.Findorder(price);
+                        	Carproduct abc=new Carproduct();
+//                        	abc.getCar_name();
+                        	
+//                        	System.out.println(cars.getCar_name());
+                        	String carName=cars.getCar_name();
+                        	
+                        	Carproductdao productdao=new Carproductdao();
+//                        	String name1=productdao.Searchcar(abc);
+                       	
+                        	Carorder scar=new Carorder(onorder,proId,carName,date1);
+                        	sdao.insert(scar);
+                        	
+                        		 
+                        	 }
+					          }
+//                        	 priceDao.Findproduct(price);
+//                        	 
+                        	 
+                        	 
+                        	 
+////                        	 System.out.println("Enter your userid");
+//                        	 int user=scan.nextInt();
+////                        	String user=s
+//                        	 
+//                        	 Orderdetail od=new Orderdetail(user,carc,prc);
+//                        	 Orderdetaildao ord= new Orderdetaildao();
+//                        	 ord.insert(od);
 //						
 						break;
 						case 2:
@@ -196,7 +262,7 @@ public class Usermain {
 							String newpass=scan.nextLine();
 							Userdetail obj=new Userdetail(username,newpass);
 							
-							UserdetailDAO pstm=new UserdetailDAO();
+							Userdetaildao pstm=new Userdetaildao();
 							try {
 								pstm.update(obj);
 							} catch (ClassNotFoundException e) {
@@ -212,7 +278,7 @@ public class Usermain {
 							System.out.println("Enter you user_id");
 							int userid=scan.nextInt();
 							Userdetail obj1=new Userdetail(userid);
-							UserdetailDAO pst=new UserdetailDAO();
+							Userdetaildao pst=new Userdetaildao();
 							try {
 								pst.delete(obj1);
 							} catch (ClassNotFoundException e) {
@@ -222,6 +288,7 @@ public class Usermain {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							break;
 						case 4:
 							System.out.println("search your product");
 							System.out.println("Enter your car id");
@@ -229,14 +296,23 @@ public class Usermain {
 							System.out.println("Enter your carname");
 							String name=scan.nextLine();
 							Carproduct obj3=new Carproduct(search,name);
-							CarproductDAO stm=new CarproductDAO();
+							Carproductdao stm=new Carproductdao();
 							stm.Searchproduct(obj3);
+							 break;
+							 default:
+							 {
+							 System.exit(0);
+							 }
 						}
 						
-					  break;
+						
+					 
+						}
 					case "admin":
 					{
-						System.out.println("1.Add car" +" 2.update car" +  "3.delete car"+" 4. show car"+"5.price detail"); 
+						while(true)
+						{
+						System.out.println("1.Add car"+'\n'+" 2.update car"+ '\n'+ "3.delete car"+'\n'+" 4. show car"+'\n'+"5.price detail"+'\n'+"view all user"); 
 						int add=Integer.parseInt(scan.nextLine());
 						switch(add)
 						
@@ -257,7 +333,7 @@ public class Usermain {
 							System.out.println("price");
 							long price=scan.nextLong();
 							Carproduct obj=new Carproduct(car_id,car_name,fueltype,carmodel,cartype,price);
-							CarproductDAO  pst1=new CarproductDAO();
+							Carproductdao  pst1=new Carproductdao();
 							pst1.insert(obj);
 							break;
 						case 2:
@@ -267,7 +343,7 @@ public class Usermain {
 							System.out.println("price");
 							long prices=scan.nextLong();
 							Carproduct obj1=new Carproduct(car_id1,prices);
-							CarproductDAO pst2=new CarproductDAO();
+							Carproductdao pst2=new Carproductdao();
 							pst2.update(obj1);
 							break;
 						case 3:
@@ -275,12 +351,12 @@ public class Usermain {
 							System.out.println("Enter your car_id");
 							String car_id2=scan.nextLine();
 							Carproduct pst3=new Carproduct(car_id2);
-							CarproductDAO pst13=new CarproductDAO();
+							Carproductdao pst13=new Carproductdao();
 							pst13.delete(pst3);
 							break;
 						case 4:
 							System.out.println("show car");
-							CarproductDAO pro1=new CarproductDAO();
+							Carproductdao pro1=new Carproductdao();
 //							Carproduct=null;
 							List<Carproduct> lProducts=pro1.showview();
 							for(int i=0;i<lProducts.size();i++)
@@ -290,7 +366,7 @@ public class Usermain {
 							}
 						case 5:
 							System.out.println("price details");
-							System.out.println("1.insert value 2.update value 3.delete value");
+							System.out.println("1.insert value"+'\n'+" 2.update value"+'\n'+" 3.delete value");
 							int enter=Integer.parseInt(scan.nextLine());
 							
 							switch(enter)
@@ -300,14 +376,15 @@ public class Usermain {
 								String carid=scan.nextLine();
 								System.out.println("Enter your carname");
 								String carname=scan.nextLine();
-								System.out.println("Enterr Exshowroom price");
+								System.out.println("Enter Exshowroom price");
 								int show=scan.nextInt();
 								System.out.println("Enter roadtax");
 								int road=scan.nextInt();
 								System.out.println("enter insurance");
 								int insurance=scan.nextInt();
-							    Pricedetail sm1=new Pricedetail(carid,carname,show,road,insurance);
-							    PricedetailDAO obj5=new PricedetailDAO();
+								int onroad=show+road+insurance;
+							    Pricedetail sm1=new Pricedetail(carid,carname,show,road,insurance,onroad);
+							    Pricedetaildao obj5=new Pricedetaildao();
 							    obj5.insert(sm1);
 							    break;
 							case 2:
@@ -317,7 +394,7 @@ public class Usermain {
 								System.out.println("Enter your Exshowroom_price");
 								int room=scan.nextInt();
 								  Pricedetail prc=new Pricedetail(car,room);
-								    PricedetailDAO obj6=new PricedetailDAO();
+								    Pricedetaildao obj6=new Pricedetaildao();
 								    obj6.update(prc);
 								    break;
 							case 3:
@@ -325,12 +402,29 @@ public class Usermain {
 								System.out.println("Enter your car_id");
 								String cars=scan.nextLine();
 								 Pricedetail prc1=new Pricedetail(cars);
-								    PricedetailDAO obj7=new PricedetailDAO();
+								    Pricedetaildao obj7=new Pricedetaildao();
 								    obj7.delete(prc1);
 								    break;
 								
 							}
+						case 6:
+							System.out.println("view all users");
+							Userdetail use=new Userdetail();
+							Userdetaildao alluse=new Userdetaildao();
+							List<Userdetail>allusers=alluse.alluser(use);
+//							System.out.println(allusers.get(0));
+							Userdetail selva=allusers.get(0);
+//							System.out.println(selva.getPhoneno());
+//							System.out.println(selva.getFirst_name());
 							
+							for(int i=0;i<allusers.size();i++)
+							{
+								System.out.println(allusers.get(i));
+								
+							}
+							
+						
+						}
 						}
 					}
 					}
@@ -342,86 +436,10 @@ public class Usermain {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		}}}
-//				System.out.println(flag1);
-//				if (flag1) {
-//					System.out.println("valid");
-//					String userFlag=null;
-//					Carproduct product=null;
-//					System.out.println("1.Show product+2. update password + 3.delete account");
-//					int x1=Integer.parseInt(scan.nextLine());
-//					switch(x1)
-//					{
-//					case 1:
-//					CarproductDAO pro1=new CarproductDAO();
-////					Carproduct=null;
-//					List<Carproduct> lProducts=pro1.showview();
-//					for(int i=0;i<lProducts.size();i++)
-//					{
-//						System.out.println(lProducts.get(i));
-//						
-//					}
-//					break;
-//					System.out.println("Enter the Product Name:");
-//					String proName=scan.nextLine();
-//					for(int i=0;i<lProducts.size();i++)
-//					{
-//						if(lProducts.get(i).getProduct_name().equals(proName))
-//						{
-//							product=lProducts.get(i);
-//						}
-//					}
-//					System.out.println("enter no of Products Needed");
-//					int noOf=Integer.parseInt(scan.nextLine());
-//					
-//					Carproduct.insertOrder(product,currentUser,noOf);
-//					
-//				
-//					System.out.println("do you want to buy more products(y/n)");
-//					  userFlag=scan.nextLine();
-//				while(userFlag.charAt(0)=='y');
-//					case 2:
-//						System.out.println("Enter your userid");
-//						int username=Integer.parseInt(scan.nextLine());
-//						System.out.println("Enter your password");
-//						String newpass=scan.nextLine();
-//						Userdetail obj=new Userdetail(username,newpass);
-//						
-//						UserdetailDAO pstm=new UserdetailDAO();
-//						try {
-//							pstm.update(obj);
-//						} catch (ClassNotFoundException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						} catch (SQLException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//						break;
-//					case 3:
-//						System.out.println("Delete your account");
-//						System.out.println("Enter you user_id");
-//						int userid=scan.nextInt();
-//						Userdetail obj1=new Userdetail(userid);
-//						UserdetailDAO pst=new UserdetailDAO();
-//						try {
-//							pst.delete(obj1);
-//						} catch (ClassNotFoundException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						} catch (SQLException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//					}
-			
-					
-					
-					
-					
-//				} else {
-//					System.out.println("invalid");
-//				}
+		}
+		}
+}
+
 
 
 

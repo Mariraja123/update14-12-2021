@@ -1,4 +1,4 @@
-package Carbooking;
+package com.Carbookingpojo;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ public class Userdetail {
 		super();
 		this.first_name = first_name;
 		this.cpassword = cpassword;
-		Email = email;
+		this.Email = email;
 		this.phoneno = phoneno;
 	}
 
@@ -31,7 +31,7 @@ public class Userdetail {
 	public Userdetail(String cpassword, String email) {
 		super();
 		this.cpassword = cpassword;
-		Email = email;
+		this.Email = email;
 	}
 	@Override
 	public String toString() {
@@ -100,9 +100,19 @@ public class Userdetail {
 		this.userId = userId;
 		this.first_name = first_name;
 		this.cpassword = cpassword;
-		Email = email;
+		this.Email = email;
 		this.phoneno = phoneno;
 		this.usertype = usertype;
+	}
+
+	public Userdetail(String string, String string2, String string3, long long1, int int1, String string4) {
+		// TODO Auto-generated constructor stub
+		this.first_name=string;
+		this.cpassword=string2;
+		this.Email=string3;
+		this.phoneno=long1;
+		this.userId=int1;
+		this.usertype=string4;
 	}
 	
 	
