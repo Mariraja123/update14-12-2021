@@ -25,7 +25,7 @@ public class CarorderDao {
 //			stmt.setString(1, obj.getStatus());
 			stmt.setDate(4, new java.sql.Date (obj.getExpecteddate().getTime()));
 			int i=stmt.executeUpdate();
-			System.out.println(i);
+			System.out.println(i+"booked succesfully");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

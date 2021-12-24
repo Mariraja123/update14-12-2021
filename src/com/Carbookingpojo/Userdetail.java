@@ -9,6 +9,15 @@ public class Userdetail {
 	private String Email;
 	private Long phoneno;
     private String usertype;
+    private long wallet;
+
+	public long getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(long wallet) {
+		this.wallet = wallet;
+	}
 
 	public Userdetail(String first_name, String cpassword, String email, Long phoneno) {
 		super();
@@ -113,6 +122,13 @@ public class Userdetail {
 		this.phoneno=long1;
 		this.userId=int1;
 		this.usertype=string4;
+	}
+
+	public Userdetail(long wallet, int user) {
+		// TODO Auto-generated constructor stub
+		this.wallet=wallet;
+		this.userId=user;
+		
 	}
 	
 	

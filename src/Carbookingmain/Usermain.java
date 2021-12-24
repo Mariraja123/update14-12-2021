@@ -168,13 +168,12 @@ public class Usermain {
 						{
 						System.out.println("1.Show product"+'\n'+"2. update password" +'\n'+ "3.delete account" +'\n'+" 4.serach product");
 						int x1=Integer.parseInt(scan.nextLine());
-//						String userFlag=null;
-//           				Carproduct product=null;
+
 						switch(x1)
 						{
 						case 1:
+							//list product2no
 						Carproductdao pro1=new Carproductdao();
-//						Carproduct=null;
 						String carname=null;
 						List<Carproduct> lProducts=pro1.showview();
 						for(int i=0;i<lProducts.size();i++)
@@ -182,6 +181,7 @@ public class Usermain {
 							System.out.println(lProducts.get(i));
 							
 						}
+						
 					          System.out.println("buy or not('yes/no')");
 					          String confi=scan.nextLine().toLowerCase();
 					          if(confi.equals("yes"))
@@ -189,6 +189,7 @@ public class Usermain {
 					          
                         
                         	 System.out.println("which is you want to buy");
+                        	
                         	 System.out.println("select car_id");
                         	 String carid1=scan.nextLine();
                         	 Carproduct car=new Carproduct(carid1);
@@ -199,12 +200,7 @@ public class Usermain {
                         	 System.out.println(user);
                         	 String proId=car.getCar_id();
                         	 
-//                        	 System.out.println(proId);
-                        	
-//                        	 
-//                        	 Pricedetail sl=new Pricedetail();
-//                        	 int prc=sl.getOnroadprice();
-//                        	 Orderdetail sdf=new Orderdetail();
+
                        	 Pricedetaildao priceDao=new Pricedetaildao();
                         	  int onroad=priceDao.Findproduct(proId);
                         	  Orderdetaildao sdf=new Orderdetaildao();
@@ -237,6 +233,12 @@ public class Usermain {
                        	
                         	Carorder scar=new Carorder(onorder,proId,carName,date1);
                         	sdao.insert(scar);
+                        	Userdetaildao stm1=new Userdetaildao();
+    						Userdetail san=new Userdetail(user);
+    						long wallet=stm1.wallte(san);
+    						wallet=wallet-onroad;
+    						Userdetail sand=new Userdetail(wallet,user);
+    						stm1.updateWallet(sand);
                         	
                         		 
                         	 }

@@ -23,7 +23,7 @@ public class Orderdetaildao {
 	stmt.setInt(3, obj.getPrice());
 	
 	int i=stmt.executeUpdate();
-	System.out.println(i);
+	System.out.println(i+"saved on cart");
     }
 	public static int Findorder(Orderdetail obj) 
     {
