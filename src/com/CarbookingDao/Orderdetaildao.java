@@ -69,14 +69,46 @@ public class Orderdetaildao {
 //  	  int i=stmt.executeUpdate();
 //  	  System.out.println(i);
 //    }
-//    public static void delete(Orderdetail obj1) throws ClassNotFoundException, SQLException
-//    {
-//    	String delete="delete from orderdetails where order_id=?";
-//    	 Connection Con=Connectionutil.getDBconnection();
-//    	 PreparedStatement stmt=Con.prepareStatement(delete);
-//    	 stmt.setInt(1, obj1.getOrder_id());
-//    	 int i=stmt.executeUpdate();
-//    	 System.out.println(i);
-//    	
-//    }
+    public static void delete(Orderdetail obj1)
+    {
+    	String delete="delete from order_details where order_id=?";
+    	 Connection Con;
+		try {
+			Con = Connectionutil.getDBconnection();
+			 PreparedStatement stmt=Con.prepareStatement(delete);
+	    	 stmt.setInt(1, obj1.getOrder_id());
+	    	 int i=stmt.executeUpdate();
+	    	 System.out.println(i+"deleted in cart");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+    public static ResultSet view (Orderdetail obj1)
+    {
+    	String delete="select * from Order_details where user_id=?";
+    	 Connection Con;
+		try {
+			Con = Connectionutil.getDBconnection();
+			 PreparedStatement stmt=Con.prepareStatement(delete);
+	    	 stmt.setInt(1, obj1.getOrder_id());
+	    	 ResultSet rs=stmt.executeQuery();
+	    	return rs;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    	
+    	
+    }
+    
 }

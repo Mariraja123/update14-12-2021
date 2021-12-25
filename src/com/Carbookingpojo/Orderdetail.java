@@ -72,7 +72,10 @@ public class Orderdetail {
 		this.carid = carid;
 		this.price = price;
 	}
-
+	public Orderdetail(int order_id) {
+		super();
+		this.orderid = order_id;
+	}
 
 
 	

@@ -1,5 +1,6 @@
 package Carbookingmain;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -157,8 +158,9 @@ public class Usermain {
 //				boolean flag1=false;
 				try {
 //					String user_type = user1.validate(user2);
-					
+					if(user1.validate(user2) != null) {
 					Userdetail crtUser=user1.validate(user2);
+					
 					
 					switch(crtUser.getUsertype())
 					{
@@ -166,13 +168,13 @@ public class Usermain {
 					case "user":
 						while(true)
 						{
-						System.out.println("1.Show product"+'\n'+"2. update password" +'\n'+ "3.delete account" +'\n'+" 4.serach product");
+						System.out.println("1.Show product"+'\n'+"2. update password" +'\n'+ "3.delete account" +'\n'+" 4.serach product"+'\n'+"5.delete cart"+'\n'+"6.view cart");
 						int x1=Integer.parseInt(scan.nextLine());
 
 						switch(x1)
 						{
 						case 1:
-							//list product2no
+							//list product
 						Carproductdao pro1=new Carproductdao();
 						String carname=null;
 						List<Carproduct> lProducts=pro1.showview();
@@ -183,6 +185,7 @@ public class Usermain {
 						}
 						
 					          System.out.println("buy or not('yes/no')");
+					          //selected car
 					          String confi=scan.nextLine().toLowerCase();
 					          if(confi.equals("yes"))
 					          {
@@ -195,6 +198,7 @@ public class Usermain {
                         	 Carproduct car=new Carproduct(carid1);
                         	 Carproductdao dao=new Carproductdao();
                             	 Carproduct cars=dao.selectproduct(car);
+                            	//stored in cart 
                         	 System.out.println("sorted selected car in cart");
                         	 int user=crtUser.getUserId();
                         	 System.out.println(user);
@@ -206,6 +210,8 @@ public class Usermain {
                         	  Orderdetaildao sdf=new Orderdetaildao();
                         	 Orderdetail price=new Orderdetail(user,proId,onroad);
                         	 sdf.insert(price);
+                        	 
+                        	 //confirm booking
                         	 System.out.println("do you want to confirm your car bookingclick('yes/no')");
                         	 String confirm=scan.nextLine().toLowerCase();
                         	 if(confirm.equals("yes"))
@@ -233,6 +239,7 @@ public class Usermain {
                        	
                         	Carorder scar=new Carorder(onorder,proId,carName,date1);
                         	sdao.insert(scar);
+                        	//wallet
                         	Userdetaildao stm1=new Userdetaildao();
     						Userdetail san=new Userdetail(user);
     						long wallet=stm1.wallte(san);
@@ -258,6 +265,7 @@ public class Usermain {
 //						
 						break;
 						case 2:
+							//change password
 							System.out.println("Enter your userid");
 							int username=Integer.parseInt(scan.nextLine());
 							System.out.println("Enter your password");
@@ -276,6 +284,7 @@ public class Usermain {
 							}
 							break;
 						case 3:
+							//delete account
 							System.out.println("Delete your account");
 							System.out.println("Enter you user_id");
 							int userid=scan.nextInt();
@@ -292,6 +301,7 @@ public class Usermain {
 							}
 							break;
 						case 4:
+							//search product
 							System.out.println("search your product");
 							System.out.println("Enter your car id");
 							String search=scan.nextLine();
@@ -301,6 +311,31 @@ public class Usermain {
 							Carproductdao stm=new Carproductdao();
 							stm.Searchproduct(obj3);
 							 break;
+						case 5:
+							//delete cart
+							System.out.println("delete in cart");
+							System.out.println("Enter your order_id");
+							int orderid=Integer.parseInt( scan.nextLine());
+							Orderdetail orderdetail = new Orderdetail(orderid);
+							Orderdetaildao orderdetaildao = new Orderdetaildao();
+							orderdetaildao.delete(orderdetail);
+							break;
+						case 6:
+							System.out.println("view cart list");
+							Orderdetail orderdetail2 = new Orderdetail(crtUser.getUserId());
+							Orderdetaildao orderdetaildao2 = new Orderdetaildao();
+							ResultSet rs = orderdetaildao2.view(orderdetail2);
+							while(rs.next()) {
+								int ordid = rs.getInt(1);
+								int uid = rs.getInt(2);
+								String carid = rs.getString(3);
+								Long amount = rs.getLong(4);
+								
+								System.out.println("order id : " + ordid + "\n" + "user id : " + uid + "\n" + "car_id : " +carid + "\n" + "wallet amount :  "+ amount);
+							
+							}
+							break;
+							
 							 default:
 							 {
 							 System.exit(0);
@@ -320,6 +355,7 @@ public class Usermain {
 						
 						{
 						case 1:
+							//add product
 							System.out.println("add you products");
 							System.out.println("Enter your car_id");
 						     String car_id=scan.nextLine();
@@ -339,6 +375,7 @@ public class Usermain {
 							pst1.insert(obj);
 							break;
 						case 2:
+							//update product
 							System.out.println("update your products");
 							System.out.println("Enter your car_id");
 							String car_id1=scan.nextLine();
@@ -349,6 +386,7 @@ public class Usermain {
 							pst2.update(obj1);
 							break;
 						case 3:
+							//delete product
 							System.out.println("delete your product");
 							System.out.println("Enter your car_id");
 							String car_id2=scan.nextLine();
@@ -357,6 +395,7 @@ public class Usermain {
 							pst13.delete(pst3);
 							break;
 						case 4:
+							//view all car
 							System.out.println("show car");
 							Carproductdao pro1=new Carproductdao();
 //							Carproduct=null;
@@ -367,6 +406,7 @@ public class Usermain {
 								
 							}
 						case 5:
+							//price detail
 							System.out.println("price details");
 							System.out.println("1.insert value"+'\n'+" 2.update value"+'\n'+" 3.delete value");
 							int enter=Integer.parseInt(scan.nextLine());
@@ -390,6 +430,7 @@ public class Usermain {
 							    obj5.insert(sm1);
 							    break;
 							case 2:
+								//update price
 								System.out.println("update details");
 								System.out.println("Enter your car_id");
 								String car=scan.nextLine();
@@ -400,6 +441,7 @@ public class Usermain {
 								    obj6.update(prc);
 								    break;
 							case 3:
+//								delete price
 								System.out.println("delete deatils");
 								System.out.println("Enter your car_id");
 								String cars=scan.nextLine();
@@ -410,6 +452,7 @@ public class Usermain {
 								
 							}
 						case 6:
+//							view all user
 							System.out.println("view all users");
 							Userdetail use=new Userdetail();
 							Userdetaildao alluse=new Userdetaildao();
@@ -430,17 +473,23 @@ public class Usermain {
 						}
 					}
 					}
+					}else {
+						System.out.println("user not Exist!!");
+					}
 				}
 				 catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
+					 
 					e1.printStackTrace();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					System.out.println("dfgh");
 					e1.printStackTrace();
 				}
 		}
 		}
 }
+
 
 
 
