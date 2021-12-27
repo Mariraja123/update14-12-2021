@@ -1,4 +1,4 @@
-package com.CarbookingDao;
+package com.CarbookingDao.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import com.connection.*;
 
 public class Userdetaildao {
 
-	public static void insert(Userdetail obj) throws ClassNotFoundException, SQLException {
+	public  void insert(UserDetail obj) throws ClassNotFoundException, SQLException {
 		String insert = "insert into User_details(First_name,cpassword,Email,Phone) values(?,?,?,?)";
 		Connection Con = Connectionutil.getDBconnection();
 		PreparedStatement stmt = Con.prepareStatement(insert);
@@ -25,11 +25,11 @@ public class Userdetaildao {
 		System.out.println(i);
 	}
 
-	public static Userdetail validate(Userdetail user2) throws ClassNotFoundException, SQLException {
+	public  UserDetail validate(UserDetail user2) throws ClassNotFoundException, SQLException {
 		String log = "Select * from user_details where Email=? and cpassword=?";
 		Connection Con = Connectionutil.getDBconnection();
 	
-		Userdetail type = null;
+		UserDetail type = null;
 		PreparedStatement stmt = Con.prepareStatement(log);
 		
 		stmt.setString(1, user2.getEmail());
@@ -39,7 +39,7 @@ public class Userdetaildao {
 		
 			while (rs.next()) {
 				
-				type = new Userdetail(rs.getString(1), rs.getString(2), rs.getString(3), rs.getLong(4),rs.getInt(5), rs.getString(6));
+				type = new UserDetail(rs.getString(1), rs.getString(2), rs.getString(3), rs.getLong(4),rs.getInt(5), rs.getString(6));
 
 				return type;
 			
@@ -48,7 +48,7 @@ public class Userdetaildao {
 		return type;
 	}
 
-	public static ResultSet validateAdmin(Userdetail obj) throws ClassNotFoundException, SQLException {
+	public static ResultSet validateAdmin(UserDetail obj) throws ClassNotFoundException, SQLException {
 		String log = "Select * from user_details where Email=? and cpassword=?";
 		Connection Con = Connectionutil.getDBconnection();
 		PreparedStatement stmt = Con.prepareStatement(log);
@@ -59,7 +59,7 @@ public class Userdetaildao {
 
 	}
 
-	public static void update(Userdetail obj) throws ClassNotFoundException, SQLException {
+	public static void update(UserDetail obj) throws ClassNotFoundException, SQLException {
 		String log1 = "update user_details set cpassword=? where user_id=?";
 		Connection Con = Connectionutil.getDBconnection();
 		PreparedStatement stmt = Con.prepareStatement(log1);
@@ -70,7 +70,7 @@ public class Userdetaildao {
 
 	}
 
-	public static void delete(Userdetail obj1) throws ClassNotFoundException, SQLException {
+	public static void delete(UserDetail obj1) throws ClassNotFoundException, SQLException {
 		String log2 = "delete from user_details where user_id=?";
 		Connection Con = Connectionutil.getDBconnection();
 		PreparedStatement stmt = Con.prepareStatement(log2);
@@ -78,20 +78,20 @@ public class Userdetaildao {
 		int i = stmt.executeUpdate();
 		System.out.println(i + "deleted");
 	}
-	public static List<Userdetail> alluser(Userdetail obj1) throws ClassNotFoundException, SQLException {
-		List<Userdetail> veiwall=new ArrayList<Userdetail>();
+	public static List<UserDetail> alluser(UserDetail obj1) throws ClassNotFoundException, SQLException {
+		List<UserDetail> veiwall=new ArrayList<UserDetail>();
 		String alluser="Select * from user_details";
 		Connection Con = Connectionutil.getDBconnection();
 		PreparedStatement stmt=Con.prepareStatement(alluser);
 		ResultSet rs=stmt.executeQuery();
 		while(rs.next())
 		{
-		     Userdetail detail=new Userdetail(rs.getString(1),rs.getString(2),rs.getString(3),Long.parseLong(rs.getString(4)),rs.getInt(5),rs.getString(6));
+		     UserDetail detail=new UserDetail(rs.getString(1),rs.getString(2),rs.getString(3),Long.parseLong(rs.getString(4)),rs.getInt(5),rs.getString(6));
 		     veiwall.add(detail);
 		}
 		return veiwall;
 	}
-	public static Long wallte(Userdetail obj)
+	public static Long wallte(UserDetail obj)
 	{
 		String query="select userwallet from user_details where user_id in ?";
 		long wallet=0;
@@ -117,7 +117,7 @@ public class Userdetaildao {
 		
 	}
 
-	public void updateWallet(Userdetail obj) {
+	public void updateWallet(UserDetail obj) {
 		// TODO Auto-generated method stub
 		String query="update user_details set userwallet=? where user_id in ?";
 		

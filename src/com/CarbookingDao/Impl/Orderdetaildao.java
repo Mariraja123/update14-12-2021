@@ -1,4 +1,4 @@
-package com.CarbookingDao;
+package com.CarbookingDao.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import com.connection.*;
 
 public class Orderdetaildao {
 
-	public static void insert(Orderdetail obj) throws ClassNotFoundException, SQLException
+	public static void insert(OrderDetail obj) throws ClassNotFoundException, SQLException
     {
 		
 	String insert="insert into order_details (user_id,car_id,price)values(?,?,?)";
@@ -25,9 +25,10 @@ public class Orderdetaildao {
 	int i=stmt.executeUpdate();
 	System.out.println(i+"saved on cart");
     }
-	public static int Findorder(Orderdetail obj) 
+	public static int Findorder(OrderDetail obj) 
     {
-   	 String search="Select Order_id from order_details where user_id=? and Car_id=?";
+   	// String search="Select Order_id from order_details where user_id=? and Car_id=?";
+   	 String search1 = "select max(Order_id) from order_details";
    	 Connection Con;
    
    	 int order=0;
@@ -35,9 +36,9 @@ public class Orderdetaildao {
 			
 			 try {
 				Con = Connectionutil.getDBconnection();
-				PreparedStatement stmt=Con.prepareStatement(search);
-			    stmt.setInt(1, obj.getUserId());
-			    stmt.setString(2, obj.getCarid());
+				PreparedStatement stmt=Con.prepareStatement(search1);
+//			    stmt.setInt(1, obj.getUserId());
+//			    stmt.setString(2, obj.getCarid());
 			 
 			    	 ResultSet rs=stmt.executeQuery();
 			    	
@@ -69,7 +70,7 @@ public class Orderdetaildao {
 //  	  int i=stmt.executeUpdate();
 //  	  System.out.println(i);
 //    }
-    public static void delete(Orderdetail obj1)
+    public static void delete(OrderDetail obj1)
     {
     	String delete="delete from order_details where order_id=?";
     	 Connection Con;
@@ -89,7 +90,7 @@ public class Orderdetaildao {
     	
     	
     }
-    public static ResultSet view (Orderdetail obj1)
+    public static ResultSet view (OrderDetail obj1)
     {
     	String delete="select * from Order_details where user_id=?";
     	 Connection Con;

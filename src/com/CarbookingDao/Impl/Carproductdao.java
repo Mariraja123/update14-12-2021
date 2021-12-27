@@ -1,4 +1,4 @@
-package com.CarbookingDao;
+package com.CarbookingDao.Impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,15 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Carbookingpojo.Carproduct;
+import com.Carbookingpojo.CarProduct;
 import com.connection.Connectionutil;
 
 
 public class Carproductdao {
 
-	public static  List<Carproduct> showview() 
+	public static  List<CarProduct> showview() 
 	{
-		List<Carproduct> productsList=new ArrayList<Carproduct>();
+		List<CarProduct> productsList=new ArrayList<CarProduct>();
 		
 		String showQuery="select * from Car_details";
 		Connection con;
@@ -25,7 +25,7 @@ public class Carproductdao {
 			ResultSet rs=stmt.executeQuery(showQuery);
 			while(rs.next())
 			{
-				Carproduct product=new Carproduct(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),Long.parseLong(rs.getString(6)));
+				CarProduct product=new CarProduct(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),Long.parseLong(rs.getString(6)));
 				productsList.add(product);
 				
 			}
@@ -62,7 +62,7 @@ public class Carproductdao {
 //		
 //	}
 //	
-     public static void update(Carproduct obj1) 
+     public static void update(CarProduct obj1) 
      {
    	  String update="update car_details set price=? where Car_id=? ";
    	  Connection Con;
@@ -82,7 +82,7 @@ public class Carproductdao {
 	}
    	  
      }
-     public static void insert(Carproduct obj1) 
+     public static void insert(CarProduct obj1) 
      {
     	 String insert="insert into car_details values(?,?,?,?,?,?)";
     	 Connection Con;
@@ -106,7 +106,7 @@ public class Carproductdao {
 		}
     	 
      }
-     public static void delete(Carproduct obj1) 
+     public static void delete(CarProduct obj1) 
      {
     	 String delete="delete from car_details where car_id=?";
     	 Connection Con;
@@ -125,7 +125,7 @@ public class Carproductdao {
 		}
     	
      }
-     public static String Searchproduct(Carproduct obj3) 
+     public static String Searchproduct(CarProduct obj3) 
      {
     	 String search="Select car_id from car_details where car_name=? and fueltype=?";
     	 Connection Con;
@@ -153,9 +153,9 @@ public class Carproductdao {
 		return proId;
     	
      }
-    	 public static Carproduct selectproduct(Carproduct obj) throws ClassNotFoundException, SQLException
+    	 public static CarProduct selectproduct(CarProduct obj) throws ClassNotFoundException, SQLException
     	 {
-    		 Carproduct cars=null;
+    		 CarProduct cars=null;
     		 String search="Select * from car_details where car_id=?";
         	 Connection Con=Connectionutil.getDBconnection();
         	 PreparedStatement stmt1=Con.prepareStatement(search);
@@ -166,7 +166,7 @@ public class Carproductdao {
         	 while(rs.next())
         	 {
         		 System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
-        		 cars =new Carproduct(rs.getString(1),rs.getString(2),rs.getString(3) ,rs.getString(4), rs.getString(5),rs.getLong(6));
+        		 cars =new CarProduct(rs.getString(1),rs.getString(2),rs.getString(3) ,rs.getString(4), rs.getString(5),rs.getLong(6));
         		 return cars;
         	 }
    return cars;

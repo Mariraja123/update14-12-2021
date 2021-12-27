@@ -4,20 +4,34 @@ package com.Carbookingpojo;
 import java.util.Date;
 import java.util.Objects;
 
-public class Carorder {
+public class CarOrder {
 	private int order_id;
 	private String car_id;
 	private String Carname;
 	private String status;
 	private Date Expecteddate;
 	
-	public Carorder(int order_id, String car_id, String carname, Date expecteddate) {
+	public CarOrder(int order_id, String car_id, String carname, Date expecteddate) {
 		super();
 		this.order_id = order_id;
 		this.car_id = car_id;
 		this.Carname = carname;
 		
 		this.Expecteddate = expecteddate;
+	}
+	public CarOrder(int order_id, String car_id, String carname,  Date expecteddate,String status) {
+		super();
+		this.order_id = order_id;
+		this.car_id = car_id;
+		Carname = carname;
+		this.Expecteddate = expecteddate;
+		this.status = status;
+	}
+	public CarOrder( String status,int order_id) {
+		super();
+		
+		this.status = status;
+		this.order_id = order_id;
 	}
 	@Override
 	public String toString() {
@@ -55,7 +69,7 @@ public class Carorder {
 		this.status = status;
 	}
 	
-	public Carorder() {
+	public CarOrder() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

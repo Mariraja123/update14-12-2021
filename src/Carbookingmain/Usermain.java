@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.List.*;
 import java.util.Scanner;
 
-import com.CarbookingDao.*;
+import com.CarbookingDao.Impl.*;
 import com.Carbookingpojo.*;
 
 
@@ -107,7 +107,7 @@ public class Usermain {
 					}
 
 				} while (!cpassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$"));
-				Userdetail users = new Userdetail(first_name, cpassword, email, phoneno);
+				UserDetail users = new UserDetail(first_name, cpassword, email, phoneno);
 				try {
 					us.insert(users);
 				} catch (ClassNotFoundException e1) {
@@ -153,13 +153,13 @@ public class Usermain {
 
 				} while (!cpassword1.matches("[A-Za-z0-9@]*"));
 				
-				Userdetail user2 = new Userdetail(0, null, cpassword1, Email, null, null);
+				UserDetail user2 = new UserDetail(0, null, cpassword1, Email, null, null);
 				Userdetaildao user1 = new Userdetaildao();
 //				boolean flag1=false;
 				try {
 //					String user_type = user1.validate(user2);
 					if(user1.validate(user2) != null) {
-					Userdetail crtUser=user1.validate(user2);
+					UserDetail crtUser=user1.validate(user2);
 					
 					
 					switch(crtUser.getUsertype())
@@ -177,7 +177,7 @@ public class Usermain {
 							//list product
 						Carproductdao pro1=new Carproductdao();
 						String carname=null;
-						List<Carproduct> lProducts=pro1.showview();
+						List<CarProduct> lProducts=pro1.showview();
 						for(int i=0;i<lProducts.size();i++)
 						{
 							System.out.println(lProducts.get(i));
@@ -195,9 +195,9 @@ public class Usermain {
                         	
                         	 System.out.println("select car_id");
                         	 String carid1=scan.nextLine();
-                        	 Carproduct car=new Carproduct(carid1);
+                        	 CarProduct car=new CarProduct(carid1);
                         	 Carproductdao dao=new Carproductdao();
-                            	 Carproduct cars=dao.selectproduct(car);
+                            	 CarProduct cars=dao.selectproduct(car);
                             	//stored in cart 
                         	 System.out.println("sorted selected car in cart");
                         	 int user=crtUser.getUserId();
@@ -208,7 +208,7 @@ public class Usermain {
                        	 Pricedetaildao priceDao=new Pricedetaildao();
                         	  int onroad=priceDao.Findproduct(proId);
                         	  Orderdetaildao sdf=new Orderdetaildao();
-                        	 Orderdetail price=new Orderdetail(user,proId,onroad);
+                        	 OrderDetail price=new OrderDetail(user,proId,onroad);
                         	 sdf.insert(price);
                         	 
                         	 //confirm booking
@@ -228,7 +228,7 @@ public class Usermain {
                         	CarorderDao sdao= new CarorderDao();
                         	Orderdetaildao orderdao=new Orderdetaildao();
                         	int onorder=orderdao.Findorder(price);
-                        	Carproduct abc=new Carproduct();
+                        	CarProduct abc=new CarProduct();
 //                        	abc.getCar_name();
                         	
 //                        	System.out.println(cars.getCar_name());
@@ -237,14 +237,14 @@ public class Usermain {
                         	Carproductdao productdao=new Carproductdao();
 //                        	String name1=productdao.Searchcar(abc);
                        	
-                        	Carorder scar=new Carorder(onorder,proId,carName,date1);
+                        	CarOrder scar=new CarOrder(onorder,proId,carName,date1);
                         	sdao.insert(scar);
                         	//wallet
                         	Userdetaildao stm1=new Userdetaildao();
-    						Userdetail san=new Userdetail(user);
+    						UserDetail san=new UserDetail(user);
     						long wallet=stm1.wallte(san);
     						wallet=wallet-onroad;
-    						Userdetail sand=new Userdetail(wallet,user);
+    						UserDetail sand=new UserDetail(wallet,user);
     						stm1.updateWallet(sand);
                         	
                         		 
@@ -270,7 +270,7 @@ public class Usermain {
 							int username=Integer.parseInt(scan.nextLine());
 							System.out.println("Enter your password");
 							String newpass=scan.nextLine();
-							Userdetail obj=new Userdetail(username,newpass);
+							UserDetail obj=new UserDetail(username,newpass);
 							
 							Userdetaildao pstm=new Userdetaildao();
 							try {
@@ -288,7 +288,7 @@ public class Usermain {
 							System.out.println("Delete your account");
 							System.out.println("Enter you user_id");
 							int userid=scan.nextInt();
-							Userdetail obj1=new Userdetail(userid);
+							UserDetail obj1=new UserDetail(userid);
 							Userdetaildao pst=new Userdetaildao();
 							try {
 								pst.delete(obj1);
@@ -307,7 +307,7 @@ public class Usermain {
 							String search=scan.nextLine();
 							System.out.println("Enter your carname");
 							String name=scan.nextLine();
-							Carproduct obj3=new Carproduct(search,name);
+							CarProduct obj3=new CarProduct(search,name);
 							Carproductdao stm=new Carproductdao();
 							stm.Searchproduct(obj3);
 							 break;
@@ -316,13 +316,13 @@ public class Usermain {
 							System.out.println("delete in cart");
 							System.out.println("Enter your order_id");
 							int orderid=Integer.parseInt( scan.nextLine());
-							Orderdetail orderdetail = new Orderdetail(orderid);
+							OrderDetail orderdetail = new OrderDetail(orderid);
 							Orderdetaildao orderdetaildao = new Orderdetaildao();
 							orderdetaildao.delete(orderdetail);
 							break;
 						case 6:
 							System.out.println("view cart list");
-							Orderdetail orderdetail2 = new Orderdetail(crtUser.getUserId());
+							OrderDetail orderdetail2 = new OrderDetail(crtUser.getUserId());
 							Orderdetaildao orderdetaildao2 = new Orderdetaildao();
 							ResultSet rs = orderdetaildao2.view(orderdetail2);
 							while(rs.next()) {
@@ -335,13 +335,22 @@ public class Usermain {
 							
 							}
 							break;
-							
-							 default:
-							 {
-							 System.exit(0);
-							 }
-						}
+						case 7:
+							System.out.println("Cancel booking");
 						
+							System.out.println("Enter your status");
+							String can=scan.nextLine();
+							System.out.println("Enter your booking id");
+							int cancel=Integer.parseInt(scan.nextLine());
+							CarOrder sac=new CarOrder(can,cancel);
+							CarorderDao sac1=new CarorderDao();
+							sac1.update(sac);
+							break;
+//							 default:
+//							 {
+//							 System.exit(0);
+//							 }
+						}					
 						
 					 
 						}
@@ -349,7 +358,7 @@ public class Usermain {
 					{
 						while(true)
 						{
-						System.out.println("1.Add car"+'\n'+" 2.update car"+ '\n'+ "3.delete car"+'\n'+" 4. show car"+'\n'+"5.price detail"+'\n'+"view all user"); 
+						System.out.println("1.Add car"+'\n'+" 2.update car"+ '\n'+ "3.delete car"+'\n'+" 4. show car"+'\n'+"5.price detail"+'\n'+"6 view all user"+'\n'+"7 view booking detail"); 
 						int add=Integer.parseInt(scan.nextLine());
 						switch(add)
 						
@@ -370,7 +379,7 @@ public class Usermain {
 							String cartype=scan.nextLine();
 							System.out.println("price");
 							long price=scan.nextLong();
-							Carproduct obj=new Carproduct(car_id,car_name,fueltype,carmodel,cartype,price);
+							CarProduct obj=new CarProduct(car_id,car_name,fueltype,carmodel,cartype,price);
 							Carproductdao  pst1=new Carproductdao();
 							pst1.insert(obj);
 							break;
@@ -381,7 +390,7 @@ public class Usermain {
 							String car_id1=scan.nextLine();
 							System.out.println("price");
 							long prices=scan.nextLong();
-							Carproduct obj1=new Carproduct(car_id1,prices);
+							CarProduct obj1=new CarProduct(car_id1,prices);
 							Carproductdao pst2=new Carproductdao();
 							pst2.update(obj1);
 							break;
@@ -390,7 +399,7 @@ public class Usermain {
 							System.out.println("delete your product");
 							System.out.println("Enter your car_id");
 							String car_id2=scan.nextLine();
-							Carproduct pst3=new Carproduct(car_id2);
+							CarProduct pst3=new CarProduct(car_id2);
 							Carproductdao pst13=new Carproductdao();
 							pst13.delete(pst3);
 							break;
@@ -399,7 +408,7 @@ public class Usermain {
 							System.out.println("show car");
 							Carproductdao pro1=new Carproductdao();
 //							Carproduct=null;
-							List<Carproduct> lProducts=pro1.showview();
+							List<CarProduct> lProducts=pro1.showview();
 							for(int i=0;i<lProducts.size();i++)
 							{
 								System.out.println(lProducts.get(i));
@@ -454,11 +463,11 @@ public class Usermain {
 						case 6:
 //							view all user
 							System.out.println("view all users");
-							Userdetail use=new Userdetail();
+							UserDetail use=new UserDetail();
 							Userdetaildao alluse=new Userdetaildao();
-							List<Userdetail>allusers=alluse.alluser(use);
+							List<UserDetail>allusers=alluse.alluser(use);
 //							System.out.println(allusers.get(0));
-							Userdetail selva=allusers.get(0);
+							UserDetail selva=allusers.get(0);
 //							System.out.println(selva.getPhoneno());
 //							System.out.println(selva.getFirst_name());
 							
@@ -468,6 +477,18 @@ public class Usermain {
 								
 							}
 							
+						case 7:
+							System.out.println("view all booking details");
+							CarOrder book=new CarOrder();
+							CarorderDao allbook=new CarorderDao();
+							List<CarOrder>allbooks=allbook.allbook(book);
+
+							
+							for(int i=0;i<allbooks.size();i++)
+							{
+								System.out.println(allbooks.get(i));
+								
+							}
 						
 						}
 						}

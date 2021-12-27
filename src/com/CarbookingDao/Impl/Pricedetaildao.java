@@ -1,4 +1,4 @@
-package com.CarbookingDao;
+package com.CarbookingDao.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

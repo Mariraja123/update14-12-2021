@@ -2,7 +2,7 @@ package com.Carbookingpojo;
 
 import java.util.Objects;
 
-public class Userdetail {
+public class UserDetail {
 	private int userId;
 	private String first_name;
 	private String cpassword;
@@ -19,7 +19,7 @@ public class Userdetail {
 		this.wallet = wallet;
 	}
 
-	public Userdetail(String first_name, String cpassword, String email, Long phoneno) {
+	public UserDetail(String first_name, String cpassword, String email, Long phoneno) {
 		super();
 		this.first_name = first_name;
 		this.cpassword = cpassword;
@@ -27,17 +27,17 @@ public class Userdetail {
 		this.phoneno = phoneno;
 	}
 
-	public Userdetail(int userId, String cpassword) {
+	public UserDetail(int userId, String cpassword) {
 		super();
 		this.userId = userId;
 		this.cpassword = cpassword;
 	}
 
-	public Userdetail(int userId) {
+	public UserDetail(int userId) {
 		super();
 		this.userId = userId;
 	}
-	public Userdetail(String cpassword, String email) {
+	public UserDetail(String cpassword, String email) {
 		super();
 		this.cpassword = cpassword;
 		this.Email = email;
@@ -59,7 +59,7 @@ public class Userdetail {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Userdetail other = (Userdetail) obj;
+		UserDetail other = (UserDetail) obj;
 		return Objects.equals(Email, other.Email) && Objects.equals(cpassword, other.cpassword)
 				&& Objects.equals(first_name, other.first_name) && Objects.equals(phoneno, other.phoneno)
 				&& userId == other.userId && Objects.equals(usertype, other.usertype);
@@ -100,11 +100,11 @@ public class Userdetail {
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
-	public Userdetail() {
+	public UserDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Userdetail(int userId, String first_name, String cpassword, String email, Long phoneno, String usertype) {
+	public UserDetail(int userId, String first_name, String cpassword, String email, Long phoneno, String usertype) {
 		super();
 		this.userId = userId;
 		this.first_name = first_name;
@@ -114,7 +114,7 @@ public class Userdetail {
 		this.usertype = usertype;
 	}
 
-	public Userdetail(String string, String string2, String string3, long long1, int int1, String string4) {
+	public UserDetail(String string, String string2, String string3, long long1, int int1, String string4) {
 		// TODO Auto-generated constructor stub
 		this.first_name=string;
 		this.cpassword=string2;
@@ -124,7 +124,7 @@ public class Userdetail {
 		this.usertype=string4;
 	}
 
-	public Userdetail(long wallet, int user) {
+	public UserDetail(long wallet, int user) {
 		// TODO Auto-generated constructor stub
 		this.wallet=wallet;
 		this.userId=user;

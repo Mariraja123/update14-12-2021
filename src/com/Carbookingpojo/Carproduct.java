@@ -2,7 +2,7 @@ package com.Carbookingpojo;
 
 import java.util.Objects;
 
-public class Carproduct {
+public class CarProduct {
 
 	private String Carid;
 	private String Car_name;
@@ -27,16 +27,16 @@ public class Carproduct {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Carproduct other = (Carproduct) obj;
+		CarProduct other = (CarProduct) obj;
 		return Objects.equals(CarModel, other.CarModel) && Objects.equals(CarType, other.CarType)
 				&& Objects.equals(Carid, other.Carid) && Objects.equals(Car_name, other.Car_name)
 				&& Objects.equals(fuelType, other.fuelType) && price == other.price;
 	}
-	public Carproduct() {
+	public CarProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Carproduct(String car_id, String car_name, String fuelType, String carModel, String carType, long price) {
+	public CarProduct(String car_id, String car_name, String fuelType, String carModel, String carType, long price) {
 		super();
 		this.Carid = car_id;
 		this.Car_name = car_name;
@@ -46,19 +46,19 @@ public class Carproduct {
 		this.price = price;
 	}
 	
-	public Carproduct(String car_id, String car_name) {
+	public CarProduct(String car_id, String car_name) {
 		super();
 		Carid = car_id;
 		Car_name = car_name;
 	}
 	
-	public Carproduct(String car_id, long price) {
+	public CarProduct(String car_id, long price) {
 		super();
 		this.Carid = car_id;
 		this.price = price;
 	}
 	
-	public Carproduct(String car_id) {
+	public CarProduct(String car_id) {
 		super();
 		this.Carid = car_id;
 	}

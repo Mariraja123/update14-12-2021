@@ -4,7 +4,7 @@ package com.Carbookingpojo;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Orderdetail {
+public class OrderDetail {
 	private  int orderid;
 	private int userId;
 	private String carid;
@@ -46,7 +46,7 @@ public class Orderdetail {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Orderdetail other = (Orderdetail) obj;
+		OrderDetail other = (OrderDetail) obj;
 		return Objects.equals(carid, other.carid) && orderid == other.orderid && price == other.price
 				&& userId == other.userId;
 	}
@@ -55,24 +55,24 @@ public class Orderdetail {
 		return "orderDetail [order_id=" + orderid + ", userId=" + userId + ", car_id=" + carid + ", price=" + price
 				+ "]";
 	}
-	public Orderdetail(int order_id, int userId, String car_id, int price) {
+	public OrderDetail(int order_id, int userId, String car_id, int price) {
 		super();
 		this.orderid = order_id;
 		this.userId = userId;
 		this.carid = car_id;
 		this.price = price;
 	}
-	public Orderdetail() {
+	public OrderDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Orderdetail(int userId, String carid, int price) {
+	public OrderDetail(int userId, String carid, int price) {
 		super();
 		this.userId = userId;
 		this.carid = carid;
 		this.price = price;
 	}
-	public Orderdetail(int order_id) {
+	public OrderDetail(int order_id) {
 		super();
 		this.orderid = order_id;
 	}
